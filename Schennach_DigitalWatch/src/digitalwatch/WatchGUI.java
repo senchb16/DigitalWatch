@@ -27,6 +27,8 @@ public class WatchGUI extends javax.swing.JFrame {
         local = new LokaleZeit(time);
         this.panelLocalTime.add(local);
         
+        new Thread(local).start();
+        
     }
 
     /**

@@ -61,7 +61,48 @@ public class LokaleZeit extends JPanel implements Runnable{
     
     @Override
     public void run() {
-        
+         while(true){
+            if(secondE == 9){
+                secondE = 0;
+                secondT++;
+                
+                if(secondT == 6){
+                    secondT = 0;
+                    minuteE++;
+                    
+                    if(minuteE == 10){
+                        minuteE = 0;
+                        minuteT++;
+                        
+                        if(minuteT == 6){
+                            minuteT =0;
+                            hourE++;
+                            
+                            if(hourE == 10){
+                                hourE = 0;
+                                hourT++;
+                                
+                                if(hourE == 24){
+                                    hourT =0;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            else{
+            secondE++;
+            }
+            changeTime();
+            
+          
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(LocalTime.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
     }
 
     private void drawPanel() {
