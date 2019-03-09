@@ -5,10 +5,17 @@
  */
 package digitalwatch;
 
+import javax.swing.JPanel;
+
 /**
  *
  * @author Christoph
  */
-public class ThirdTime {
+public class ThirdTime extends JPanel implements Runnable {
+
+    @Override
+    public void run() {
+        
+    }
     
 }
