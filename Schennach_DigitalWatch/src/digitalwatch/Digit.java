@@ -24,9 +24,4 @@ public class Digit extends JLabel {
         this.setIcon(new ImageIcon("src/icons/"+number+".png"));
         value = number;
     }
-
-   
-    
-    
-    
 }
