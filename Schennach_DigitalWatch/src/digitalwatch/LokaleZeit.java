@@ -20,7 +20,7 @@ import javax.swing.JPanel;
  */
 public class LokaleZeit extends JPanel implements Runnable{
 
-     private Digit digitSecondE = new Digit(0);
+    private Digit digitSecondE = new Digit(0);
     private Digit digitSecondT = new Digit(0);
     private Digit digitMinuteE = new Digit(0);
     private Digit digitMinuteT = new Digit(0);

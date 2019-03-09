@@ -16,12 +16,16 @@ import javax.swing.JOptionPane;
  * @author Christoph
  */
 public class WatchGUI extends javax.swing.JFrame {
-   
+    private LokaleZeit local;
     /**
      * Creates new form WatchGUI
      */
     public WatchGUI() {
-       
+        initComponents();
+        LocalTime time = LocalTime.now();
+        
+        local = new LokaleZeit(time);
+        this.panelLocalTime.add(local);
         
     }
 
