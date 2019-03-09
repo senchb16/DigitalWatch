@@ -5,6 +5,7 @@
  */
 package digitalwatch;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.time.LocalTime;
 import java.util.logging.Level;
@@ -40,6 +41,7 @@ public class ThirdTime extends JPanel implements Runnable {
         this.setLayout(new GridLayout(1, 8));
         this.setOpaque(true);
         this.setSize(536, 40);
+        
 
         secondE = time.getSecond() % 10;
         secondT = time.getSecond() / 10;
