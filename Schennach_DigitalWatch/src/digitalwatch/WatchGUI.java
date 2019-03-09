@@ -16,19 +16,43 @@ import javax.swing.JOptionPane;
  * @author Christoph
  */
 public class WatchGUI extends javax.swing.JFrame {
+
     private LokaleZeit local;
+    private SecondTime st;
+    private ThirdTime tt;
+
+    private String place2;
+    private String place3;
+
+    private int timeShift2;
+    private int timeShift3;
+
     /**
      * Creates new form WatchGUI
      */
     public WatchGUI() {
         initComponents();
         LocalTime time = LocalTime.now();
-        
+
         local = new LokaleZeit(time);
         this.panelLocalTime.add(local);
         
-        new Thread(local).start();
+        place2 = JOptionPane.showInputDialog(null, "Place for second time: ");
+        timeShift2 = Integer.parseInt(JOptionPane.showInputDialog(null, "Time shift for second time: "));
+        st = new SecondTime(time.plusHours(timeShift2));
+        this.lbSecond.setText(place2);
+        this.panelSecondTime.add(st);
+
+        place3 = JOptionPane.showInputDialog(null, "Place for third time: ");
+        timeShift3 = Integer.parseInt(JOptionPane.showInputDialog(null, "Time shift for third time: "));
+        tt = new ThirdTime(time.plusHours(timeShift3));
+        this.lbThird.setText(place3);
+        this.panelThirdTime.add(tt);
         
+        new Thread(local).start();
+        new Thread(st).start();
+        new Thread(tt).start();
+
     }
 
     /**
