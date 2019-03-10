@@ -17,9 +17,9 @@ import javax.swing.JOptionPane;
  */
 public class WatchGUI extends javax.swing.JFrame {
 
-    private LokaleZeit local;
-    private SecondTime st;
-    private ThirdTime tt;
+    private Time local;
+    private Time second;
+    private Time third;
 
     private String place2;
     private String place3;
@@ -40,20 +40,22 @@ public class WatchGUI extends javax.swing.JFrame {
         timeShift3 = Integer.parseInt(JOptionPane.showInputDialog(null, "Time shift for third time: "));
         
         LocalTime time = LocalTime.now();
-        local = new LokaleZeit(time);
+        local = new Time(time);
         this.panelLocalTime.add(local);
-        st = new SecondTime(time.plusHours(timeShift2));
+        second = new Time(time.plusHours(timeShift2));
         this.lbSecond.setText(place2);
-        this.panelSecondTime.add(st);
-        tt = new ThirdTime(time.plusHours(timeShift3));
+        this.panelSecondTime.add(second);
+        third = new Time(time.plusHours(timeShift3));
         this.lbThird.setText(place3);
-        this.panelThirdTime.add(tt);
+        this.panelThirdTime.add(third);
         
         new Thread(local).start();
-        new Thread(st).start();
-        new Thread(tt).start();
+        new Thread(second).start();
+        new Thread(third).start();
 
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -67,7 +69,6 @@ public class WatchGUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         panelLocalTime = new javax.swing.JPanel();
-        panelLocalTime1 = new javax.swing.JPanel();
         panelThirdTime = new javax.swing.JPanel();
         panelSecondTime = new javax.swing.JPanel();
         lbSecond = new javax.swing.JLabel();
@@ -83,10 +84,6 @@ public class WatchGUI extends javax.swing.JFrame {
         panelLocalTime.setPreferredSize(new java.awt.Dimension(536, 60));
         panelLocalTime.setRequestFocusEnabled(false);
         panelLocalTime.setLayout(new java.awt.GridLayout(1, 8));
-
-        panelLocalTime1.setPreferredSize(new java.awt.Dimension(536, 60));
-        panelLocalTime1.setRequestFocusEnabled(false);
-        panelLocalTime1.setLayout(new java.awt.GridLayout(1, 8));
 
         panelThirdTime.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         panelThirdTime.setPreferredSize(new java.awt.Dimension(536, 60));
@@ -120,22 +117,17 @@ public class WatchGUI extends javax.swing.JFrame {
                     .addComponent(panelSecondTime, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelLocalTime, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(21, 21, 21))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(142, Short.MAX_VALUE)
-                    .addComponent(panelLocalTime1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(22, 22, 22)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(panelLocalTime, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(panelLocalTime, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jLabel1)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -147,16 +139,11 @@ public class WatchGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(panelThirdTime, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(26, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lbThird)
                         .addGap(55, 55, 55))))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(23, 23, 23)
-                    .addComponent(panelLocalTime1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(183, Short.MAX_VALUE)))
         );
 
         pack();
@@ -203,7 +190,6 @@ public class WatchGUI extends javax.swing.JFrame {
     private javax.swing.JLabel lbSecond;
     private javax.swing.JLabel lbThird;
     private javax.swing.JPanel panelLocalTime;
-    private javax.swing.JPanel panelLocalTime1;
     private javax.swing.JPanel panelSecondTime;
     private javax.swing.JPanel panelThirdTime;
     // End of variables declaration//GEN-END:variables
